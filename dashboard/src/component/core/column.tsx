@@ -2,7 +2,7 @@ import { Status } from './Status';
 import { Role } from './dorpdown'; 
 import { userType } from '../../Types/userType';
 import { AddUserForm, Roles } from '../UI/AddUserForm';
-import { RoleType } from './sigmantingbutton';
+import { RoleType } from './sigmantedbutton';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../Redux/store';
 import { deleteUser } from '../../api/api';

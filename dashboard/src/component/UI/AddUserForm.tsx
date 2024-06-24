@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleInput } from '../core/input';
-import { Sigmantingbutton, RoleType } from '../core/sigmantingbutton';
+import { Sigmantingbutton, RoleType } from '../core/sigmantedbutton';
 import { Button } from '../core/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../Redux/store';

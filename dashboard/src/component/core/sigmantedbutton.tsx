@@ -5,12 +5,12 @@ export interface RoleType {
   id: number;
 }
 
-interface sigmantingbuttonProps {
+interface sigmantedbuttonProps {
   array: RoleType[];
   onSelect: (role: RoleType) => void;
 }
 
-function Sigmantingbutton({ array, onSelect }: sigmantingbuttonProps) {
+function Sigmantedbutton({ array, onSelect }: sigmantedbuttonProps) {
   const [selectedRole, setSelectedRole] = useState<RoleType>(array[0]);
 
   const handleClick = (role: RoleType) => {
@@ -38,4 +38,4 @@ function Sigmantingbutton({ array, onSelect }: sigmantingbuttonProps) {
   );
 }
 
-export { Sigmantingbutton };
+export { Sigmantedbutton };

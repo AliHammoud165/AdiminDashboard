@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from "../../utilts";
-import { RoleType } from './sigmantingbutton';
+import { RoleType } from './sigmantedbutton';
 import { changeRoel } from '../../api/api';
 
 interface RoleTypes {
