@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Users } from '../core/Users'
+import { useEffect, useState } from 'react'
+import { Column } from '../core/column'
 import { userType } from '../../Types/userType'
 import {fetchAllUsers, searchUsersByName} from '../../api/api';
 import { useSelector } from 'react-redux';
-import { RootState } from '@reduxjs/toolkit/query';
-
-
-
-
+import { RootState } from '../../Redux/store';
 function List() {
   const [users, setUsers] = useState<userType[]>([]);
 
@@ -44,7 +40,7 @@ function List() {
       </div>
       <div className='bg-white min-h-[50px] h-fit rounded-[10px] pb-[10px]'>
       {users.map(user => (
-        <Users
+        <Column
         role_id={user.role_id}
           key={user.id}
           id={user.id}

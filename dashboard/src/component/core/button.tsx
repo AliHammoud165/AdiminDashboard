@@ -1,12 +1,11 @@
-import React from 'react';
 import { cn } from '../../utilts';
 
-interface AddbuttonProps {
+interface ButtonProps {
   text: string;
   type:'Add'|'cancel'
 }
 
-const Addbutton=({ text,type }:AddbuttonProps) => {
+const Button=({ text,type }:ButtonProps) => {
   
   
   return (
@@ -18,4 +17,4 @@ const Addbutton=({ text,type }:AddbuttonProps) => {
   );
 }
 
-export { Addbutton };
+export { Button };

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
 export interface RoleType {
   text: string;
   id: number;
 }
 
-interface PickProps {
+interface sigmantingbuttonProps {
   array: RoleType[];
   onSelect: (role: RoleType) => void;
 }
 
-function Pick({ array, onSelect }: PickProps) {
+function Sigmantingbutton({ array, onSelect }: sigmantingbuttonProps) {
   const [selectedRole, setSelectedRole] = useState<RoleType>(array[0]);
 
   const handleClick = (role: RoleType) => {
@@ -21,11 +21,11 @@ function Pick({ array, onSelect }: PickProps) {
   };
 
   return (
-    <div className="inline m:flex items-center justify-between h-full w-full">
+    <div className="inline m:flex items-center justify-between h-full w-full rounded-lg overflow-clip">
       {array.map((role) => (
         <div
           key={role.id}
-          className={`h-full rounded-[5px] w-fit p-[10px] cursor-pointer flex items-center justify-center ${
+          className={`h-full  w-full p-[10px] cursor-pointer flex items-center justify-center ${
             selectedRole.id === role.id ? 'bg-[#046AF3] text-white' : 'bg-gray-200 text-black'
           }`}
           onClick={() => handleClick(role)}
@@ -38,4 +38,4 @@ function Pick({ array, onSelect }: PickProps) {
   );
 }
 
-export { Pick };
+export { Sigmantingbutton };

@@ -18,12 +18,13 @@ function Main() {
 
   return (
     <div>
+      {/* {switchValue && <AddUserForm text="Add" id={1} />}  */}
       <Layout
         navbarContent={<Navbar />}
         children={<>
           <Subnavbar />
           <List />
-          {/* {switchValue && <AddUserForm text="Reset" />}  */}
+          
         </>}
         sidebarContent={<Sidebar icons={icons} />}
       />

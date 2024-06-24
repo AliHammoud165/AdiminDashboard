@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleInput } from '../core/input';
-import { Addbutton } from '../core/addbutton';
-import { Pick, RoleType } from '../core/pick';
+import { Sigmantingbutton, RoleType } from '../core/sigmantingbutton';
+import { Button } from '../core/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../Redux/store';
+import { AppDispatch, RootState } from '../../Redux/store';
 import { toggle } from '../../Redux/swich/swichSlice';
-import { RootState } from '@reduxjs/toolkit/query/react';
 import { addUserType } from '../../Types/userType';
 import { addUser, changepass } from '../../api/api';
 
@@ -16,12 +15,12 @@ export const Roles: RoleType[] = [
   { id: 4, text: 'Super Admin' }
 ];
 
-interface FormType{
-  text:"Add"|"Reset"
-  id:number
+interface FormType {
+  text: "Add" | "Reset";
+  id: number;
 }
 
-function AddUserForm({text,id}:FormType) {
+function AddUserForm({ text, id }: FormType) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -85,7 +84,6 @@ function AddUserForm({text,id}:FormType) {
     dispatch(toggle());
   };
 
-
   const handleResetPasswordChange = (value: string) => {
     setPassword(value);
   };
@@ -94,51 +92,44 @@ function AddUserForm({text,id}:FormType) {
     setRepeatPassword(value);
   };
 
-
   const handelRestpassword = () => {
     console.log(id); 
     console.log(password); 
     console.log(repeatPassword);
     changepass(id, password, repeatPassword)
- 
-
     dispatch(toggle());
-
-  }
-
-
+  };
 
   return (
     <div className="full-screen-overlay fixed top-0 left-0 w-full h-full z-50 bg-[#00000080] flex justify-center items-center">
-{text === "Add" && (
- <div className='py-[20px] px-[10px] h-[fit] m:h-[60%] w-[40%] bg-white rounded-[20px]'>
-        <p className='font-bold w-full h-[40px] border-b-gray-300 border-b-[2px]'>Add User Form</p>
-        <div className='mt-3 w-full h-[40px] flex items-center justify-between'>
-          <div className='h-full w-[47%]'><StyleInput placeholder='Enter First Name' onChange={handleFirstNameChange} value={firstName} /></div>
-          <div className='h-full w-[47%]'><StyleInput placeholder='Enter Last Name' onChange={handleLastNameChange} value={lastName} /></div>
+      {text === "Add" && (
+        <div className='py-[20px] px-[30px] h-[fit] m:h-[60%] w-[40%] bg-white rounded-[20px]'>
+          <p className='font-bold w-full h-[40px] border-b-gray-300 border-b-[2px]'>Add User Form</p>
+          <div className='mt-3 w-full h-[40px] flex items-center justify-between'>
+            <div className='h-full w-[47%]'><StyleInput placeholder='Enter First Name' onChange={handleFirstNameChange} value={firstName} /></div>
+            <div className='h-full w-[47%]'><StyleInput placeholder='Enter Last Name' onChange={handleLastNameChange} value={lastName} /></div>
+          </div>
+          <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Enter Email' onChange={handleEmailChange} value={email} /></div>
+          <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Password' type='password' onChange={handlePasswordChange} value={password} /></div>
+          <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Repeat Password' type='password' onChange={handleRepeatPasswordChange} value={repeatPassword} /></div>
+          
+          <div className='h-[40px] w-full mt-4'><Sigmantingbutton array={Roles} onSelect={handleRoleSelect} /></div>
+          
+          <div className='flex items-center justify-between w-full h-[230px] m:h-[40px] mt-10'>
+            <div onClick={handleCancel}><Button type='cancel' text='Cancel' /></div>
+            <div onClick={handleAddUser}><Button type='Add' text='Add New User' /></div>
+          </div>
         </div>
-        <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Enter Email' onChange={handleEmailChange} value={email} /></div>
-        <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Password' type='password' onChange={handlePasswordChange} value={password} /></div>
-        <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Repeat Password' type='password' onChange={handleRepeatPasswordChange} value={repeatPassword} /></div>
-        
-        <div className='h-[40px] w-full mt-4'><Pick array={Roles} onSelect={handleRoleSelect} /></div>
-        
-        <div className='flex items-center justify-between w-full h-[230px] m:h-[40px] mt-10'>
+      )}
       
-          <div onClick={handleCancel}><Addbutton type='cancel' text='Cancel' /></div>
-          <div onClick={handleAddUser}><Addbutton type='Add' text='Add New User' /></div>
+      {text === "Reset" && (
+        <div className='py-[20px] px-[50px] h-[40%] w-[40%] bg-white rounded-[20px]'>
+          <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Password' type='password' onChange={handleResetPasswordChange} value={password} /></div>
+          <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='New password' type='password' onChange={handleResetNewPasswordChange} value={repeatPassword} /></div>
+          <div className='mt-3' onClick={handleCancel}><Button type='cancel' text='Cancel' /></div>
+          <div className='mt-3' onClick={handelRestpassword}><Button type='Add' text='Reset the password' /></div>
         </div>
-      </div>
-    )}
-    {text === "Reset" && (
-
-     <div className='py-[20px] px-[10px] h-[40%] w-[40%] bg-white rounded-[20px]'>
-     <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='Password' type='password' onChange={handleResetPasswordChange} value={password} /></div>
-     <div className='h-[40px] w-[100%] mt-3'><StyleInput placeholder='New password' type='password' onChange={handleResetNewPasswordChange} value={repeatPassword} /></div>
-     <div className='mt-3' onClick={handleCancel}><Addbutton type='cancel' text='Cancel' /></div>
-     <div className='mt-3' onClick={handelRestpassword}><Addbutton type='Add' text='Reset the password' /></div>
-</div>
-    )}
+      )}
     </div>
   );
 }

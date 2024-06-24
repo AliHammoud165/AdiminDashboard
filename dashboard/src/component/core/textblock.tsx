@@ -1,10 +1,9 @@
-import React from 'react'
 
-interface TitleTypes{
+interface TextblockTypes{
     text:string;
 }
 
-function Title({text}:TitleTypes) {
+function Textblock({text}:TextblockTypes) {
   return (
     <div className='h-fit w-fit text-gray-500'>
       {text}
@@ -12,4 +11,4 @@ function Title({text}:TitleTypes) {
   )
 }
 
-export  {Title}
+export  {Textblock}
